@@ -7,6 +7,9 @@ console = Console()
 
 
 def show_menu():
+    """
+    Displays the menu.
+    """
     while True:
         console.clear()
 
