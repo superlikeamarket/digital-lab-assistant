@@ -1,0 +1,8 @@
+dilution calculator
+media preparation calculator
+CFU estimator
+protocol timer with alerts/reminders
+Automated microbial growth analyzer (from images, ML model counts the colonies)
+Checklists on how to identify different microbes
+Procedures instructions
+Voice control
