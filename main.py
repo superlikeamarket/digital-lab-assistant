@@ -1,4 +1,5 @@
 from lab_assistant.menu import show_menu
+from lab_assistant.dilution import run_dilution_cli
 from rich.console import Console
 
 
@@ -7,7 +8,7 @@ def main():
         choice = show_menu()
 
         if choice == "1":
-            print("Dilution calculator coming soon.")
+            run_dilution_cli()
         elif choice == "2":
             print("Media preparation calculator coming soon.")
         elif choice == "3":
