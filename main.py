@@ -1,5 +1,6 @@
 from lab_assistant.menu import show_menu
 from lab_assistant.dilution import run_dilution_cli
+from lab_assistant.media_prep import run_media_prep_cli
 from rich.console import Console
 
 
@@ -10,7 +11,7 @@ def main():
         if choice == "1":
             run_dilution_cli()
         elif choice == "2":
-            print("Media preparation calculator coming soon.")
+            run_media_prep_cli()
         elif choice == "3":
             print("CFU estimator coming soon.")
         elif choice == "4":
