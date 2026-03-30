@@ -64,7 +64,7 @@ def run_media_prep_cli():
         return
         
     answer = Text.assemble(
-        ("\nMass: ", "bold magenta"), f"{mass:.2f} g",)
+        ("\nMass: ", "bold magenta"), f"{mass:.2f} g")
     console.print(answer)
 
     input("\nPress Enter to return to menu...")

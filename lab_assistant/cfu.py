@@ -75,7 +75,7 @@ def run_cfu_cli():
         return
         
     answer = Text.assemble(
-        ("\nCFU per mL: ", "bold magenta"), f"{cfu_ml:.2e}",)
+        ("\nCFU per mL: ", "bold magenta"), f"{cfu_ml:.2e}")
     console.print(answer)
 
     input("\nPress Enter to return to menu...")

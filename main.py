@@ -2,6 +2,7 @@ from lab_assistant.menu import show_menu
 from lab_assistant.dilution import run_dilution_cli
 from lab_assistant.media_prep import run_media_prep_cli
 from lab_assistant.cfu import run_cfu_cli
+from lab_assistant.timer import run_timer_cli
 from rich.console import Console
 
 
@@ -16,7 +17,7 @@ def main():
         elif choice == "3":
             run_cfu_cli()
         elif choice == "4":
-            print("Protocol timer coming soon.")
+            run_timer_cli()
         elif choice == "5":
             print("Goodbye.")
             break
