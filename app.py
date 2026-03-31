@@ -17,9 +17,9 @@ tool = st.sidebar.radio(
 if tool == "Dilution calculator":
     st.header("Dilution calculator")
 
-    stock_conc = st.text_input("Stock concentration", placeholder="e.g. 10 g/L or 10 mg/mL")
-    target_conc = st.text_input("Target concentration", placeholder="e.g. 2 g/L or 2 mg/mL")
-    final_volume = st.text_input("Final volume", placeholder="e.g. 0.5 L or 500 mL")
+    stock_conc = st.text_input("Stock concentration", placeholder="e.g. 10 g/L or 10 mg/mL, default unit: g/L")
+    target_conc = st.text_input("Target concentration", placeholder="e.g. 2 g/L or 2 mg/mL, default unit: g/L")
+    final_volume = st.text_input("Final volume", placeholder="e.g. 0.5 L or 500 mL, default unit: L")
 
     if st.button("Calculate dilution"):
         try:
@@ -40,8 +40,8 @@ if tool == "Dilution calculator":
 elif tool == "Media preparation":
     st.header("Media preparation calculator")
 
-    concentration = st.text_input("Desired concentration", placeholder="e.g. 40 g/L")
-    volume = st.text_input("Desired volume", placeholder="e.g. 500 mL or 0.5 L")
+    concentration = st.text_input("Desired concentration", placeholder="e.g. 40 g/L, default unit: g/L")
+    volume = st.text_input("Desired volume", placeholder="e.g. 500 mL or 0.5 L, default unit: L")
 
     if st.button("Calculate mass"):
         try:
@@ -55,7 +55,7 @@ elif tool == "CFU estimator":
     st.header("CFU estimator")
 
     colonies = st.number_input("Number of colonies", min_value=1, step=1)
-    plated_volume = st.text_input("Plated volume", placeholder="e.g. 0.1 mL or 100 uL")
+    plated_volume = st.text_input("Plated volume", placeholder="e.g. 0.1 mL or 100 uL, default unit: mL")
     dilution = st.text_input("Dilution", placeholder="e.g. 0.0001, -4, or 10^-4")
 
     if st.button("Calculate CFU"):
