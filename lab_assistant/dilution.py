@@ -18,7 +18,7 @@ def calculate_dilution(stock_conc, target_conc, final_volume):
     - concentration: g/L
     - volume: L
 
-    Returns stock volume and diluent volume in milliliters.
+    Returns stock volume and diluent volume normalized in liters.
     """
     
     # Normalize units
@@ -39,7 +39,8 @@ def calculate_dilution(stock_conc, target_conc, final_volume):
 
 def run_dilution_cli():
     """
-    Runs the dilution calculator in the command line interface.
+    Runs the dilution calculator in the command line interface. Returns stock
+    and diluent volumes in milliliters.
     """
     console.clear()
 
