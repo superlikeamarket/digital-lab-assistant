@@ -9,6 +9,29 @@ st.set_page_config(page_title="Digital Lab Assistant", page_icon="🧪", layout=
 st.title("Digital Lab Assistant")
 st.write("A simple lab utility app for dilution, media prep, and CFU calculations.")
 
+with st.expander("About this app"):
+    st.markdown(
+        """
+    **Digital Lab Assistant** is a small web app for common microbiology and lab-prep calculations.
+
+    It is intended for:
+    - students learning laboratory methods
+    - interns in microbiology or quality-control labs
+    - laboratory staff who want quick calculation support
+
+    The app currently provides:
+    - dilution calculations using **C1V1 = C2V2**
+    - media preparation calculations using **mass = concentration × volume**
+    - CFU estimation using **CFU/mL = colonies / (plated volume × dilution)**
+    - a simple protocol timer
+
+    This app is meant for **educational and workflow support**.
+    It does **not** replace laboratory SOPs, supervisor instructions, validation procedures, or official QC documentation.
+
+    Always verify calculations before using them in real lab work.
+    """
+    )
+
 tool = st.sidebar.radio(
     "Choose a tool",
     ["Dilution calculator", "Media preparation", "CFU estimator"]
@@ -71,26 +94,3 @@ elif tool == "CFU estimator":
 
         except ValueError as e:
             st.error(str(e))
-
-st.header("About")
-st.markdown(
-    """
-**Digital Lab Assistant** is a small web app for common microbiology and lab-prep calculations.
-
-It is intended for:
-- students learning laboratory methods
-- interns in microbiology or quality-control labs
-- laboratory staff who want quick calculation support
-
-The app currently provides:
-- dilution calculations using **C1V1 = C2V2**
-- media preparation calculations using **mass = concentration × volume**
-- CFU estimation using **CFU/mL = colonies / (plated volume × dilution)**
-- a simple protocol timer
-
-This app is meant for **educational and workflow support**.
-It does **not** replace laboratory SOPs, supervisor instructions, validation procedures, or official QC documentation.
-
-Always verify calculations before using them in real lab work.
-"""
-)
