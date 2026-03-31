@@ -2,18 +2,14 @@ from rich.console import Console
 
 console = Console()
 
-
 def success(msg):
     console.print(f"[bold green]{msg}[/bold green]")
-
 
 def error(msg):
     console.print(f"[bold red]{msg}[/bold red]")
 
-
 def info(msg):
     console.print(f"[bold cyan]{msg}[/bold cyan]")
-
 
 def parse_value_unit(input_str, normalize_fn, default_unit=None):
     cleaned_input = input_str.strip().lower()
@@ -41,16 +37,11 @@ def parse_value_unit(input_str, normalize_fn, default_unit=None):
     
     return normalize_fn(value, unit)
 
-
-
-
 def ml_to_l(value):
     return value / 1000
 
-
 def ul_to_l(value):
     return value / 1_000_000
-
 
 def normalize_volume(value, unit):
     unit = unit.strip().lower()
@@ -64,18 +55,14 @@ def normalize_volume(value, unit):
     else:
         raise ValueError("Unsupported unit. Use 'mL', 'L', or 'uL'.")
 
-
 def mg_per_ml_to_g_per_l(value):
     return value
-
 
 def mg_per_l_to_g_per_l(value):
     return value / 1000
 
-
 def g_per_ml_to_g_per_l(value):
     return value * 1000
-
 
 def normalize_concentration(value, unit):
     unit = unit.strip().lower()

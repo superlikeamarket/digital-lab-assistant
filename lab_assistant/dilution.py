@@ -28,9 +28,6 @@ def calculate_dilution(stock_conc, target_conc, final_volume):
     
     if target_conc > stock_conc:
         raise ValueError("Target concentration cannot be greater than stock concentration.")
-
-
-
     
     # Calculate volumes
     stock_volume = (target_conc * final_volume) / stock_conc
