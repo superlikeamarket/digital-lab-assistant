@@ -176,24 +176,4 @@ digital-lab-assistant/
 
 ## Author
 
-[Your Name]
-
----
-
-# How to use this
-
-Do not overthink it:
-
-1. Copy this into your `README.md`
-2. Replace:
-
-   * `yourusername`
-   * `[Your Name]`
-3. Commit it:
-
-```bash
-git add README.md
-git commit -m "added README"
-```
-
----
+superlikeamarket
