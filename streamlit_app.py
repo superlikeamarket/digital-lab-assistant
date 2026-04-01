@@ -9,17 +9,23 @@ st.set_page_config(
 )
 
 page = st.sidebar.radio(
-    "Navigate",
-    ["Home", "Dilution calculator", "Media preparation", "CFU estimator", "Protocol timer"]
+    "📍 Navigate",
+    [
+        "🧪 Home", 
+        "⚗️ Dilution calculator", 
+        "🧫 Media preparation", 
+        "🦠 CFU estimator", 
+        "⏰ Protocol timer"
+    ]
 )
 
-if page == "Home":
+if page == "🧪 Home":
     home.run()
-elif page == "Dilution calculator":
+elif page == "⚗️ Dilution calculator":
     dilution_page.run()
-elif page == "Media preparation":
+elif page == "🧫 Media preparation":
     media_prep_page.run()
-elif page == "CFU estimator":
+elif page == "🦠 CFU estimator":
     cfu_page.run()
-elif page == "Protocol timer":
+elif page == "⏰ Protocol timer":
     timer_page.run()
