@@ -11,7 +11,7 @@ from src.app.predictor import predict_colonies
 
 @st.cache_resource
 def load_model_and_config():
-    config_path = Path("assets/configs/inference/colony_counter_inference.yaml")
+    config_path = Path("assets/configs/colony_counter_inference.yaml")
 
     if not config_path.exists():
         raise FileNotFoundError(f"Missing config file: {config_path}")
