@@ -6,3 +6,10 @@ pluggy==1.6.0
 Pygments==2.20.0
 pytest==9.0.2
 rich==14.3.3
+streamlit
+opencv-python-headless
+numpy
+pillow
+pyyaml
+ultralytics
+git+https://github.com/superlikeamarket/colony-counter.git

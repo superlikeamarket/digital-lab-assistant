@@ -12,7 +12,7 @@ page = st.sidebar.radio(
     "📍 Navigate",
     [
         "🧪 Home", 
-        "🧫 Colony counter"
+        "🧫 Colony counter",
         "💧 Dilution calculator", 
         "⚗️ Media preparation", 
         "🦠 CFU estimator", 
