@@ -2,34 +2,30 @@ import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
-
-from ultralytics import YOLO
-
-from "colony-counter".src.app.preprocessing import preprocess_for_model
-from src.ml.inference import run_inference_on_image, draw_predictions
 import yaml
 
+from ultralytics import YOLO
+from src.app.predictor import predict_colonies
 
-# =========================
-# LOAD MODEL (cached)
-# =========================
 
 @st.cache_resource
-def load_model():
-    with open("configs/inference.yaml") as f:
+def load_model_and_config():
+    config_path = "configs/inference/colony_counter_inference.yaml"
+    with open(config_path, "r") as f:
         config = yaml.safe_load(f)
 
     model = YOLO(config["model"])
     return model, config
 
 
-# =========================
-# UI
-# =========================
 def run():
     st.title("🧫 Colony Counter")
-
     st.write("Upload a Petri dish image to count bacterial colonies.")
+
+    model, base_config = load_model_and_config()
+
+    conf = st.slider("Confidence", 0.0, 1.0, float(base_config.get("conf", 0.25)), 0.01)
+    iou = st.slider("IoU", 0.0, 1.0, float(base_config.get("iou", 0.5)), 0.01)
 
     uploaded_file = st.file_uploader(
         "Upload image",
@@ -37,45 +33,34 @@ def run():
     )
 
     if uploaded_file is not None:
-        image = Image.open(uploaded_file)
+        image = Image.open(uploaded_file).convert("RGB")
         image_np = np.array(image)
 
-        st.image(image, caption="Original Image", use_container_width=True)
+        st.image(image_np, caption="Original image", use_container_width=True)
 
-        model, config = load_model()
+        config = dict(base_config)
+        config["conf"] = conf
+        config["iou"] = iou
 
-        # =========================
-        # PREPROCESS
-        # =========================
-        processed, info = preprocess_for_model(image_np)
+        result = predict_colonies(
+            image=image_np,
+            model=model,
+            config=config,
+        )
 
-        if processed is None:
-            st.error(info["error"])
+        if not result["success"]:
+            st.error(result["error"])
+            return
+
+        processed_rgb = cv2.cvtColor(result["processed_image"], cv2.COLOR_BGR2RGB)
+        vis_rgb = cv2.cvtColor(result["visualization"], cv2.COLOR_BGR2RGB)
+
+        st.image(processed_rgb, caption="Preprocessed (cropped + masked)", use_container_width=True)
+        st.image(vis_rgb, caption="Prediction", use_container_width=True)
+
+        st.success(f"Detected colonies: {result['pred_count']}")
+
+        if result["is_tntc"]:
+            st.warning(f"TNTC (>{config.get('tntc_threshold', 300)})")
         else:
-            st.image(processed, caption="Preprocessed (cropped + masked)")
-
-            # =========================
-            # INFERENCE
-            # =========================
-            count, boxes, vis_img = run_inference_on_image(
-                model,
-                processed,
-                config
-            )
-
-            vis = draw_predictions(vis_img, boxes, count)
-
-            st.image(vis, caption="Prediction")
-
-            st.success(f"Detected colonies: {count}")
-
-            # TNTC logic
-            TNTC_THRESHOLD = 300
-            if count >= TNTC_THRESHOLD:
-                st.warning("TNTC (Too Numerous To Count)")
-
-
-
-conf = st.slider("Confidence", 0.0, 1.0, 0.25)
-
-iou = st.slider("IoU", 0.0, 1.0, 0.5)
+            st.info("Countable plate")
