@@ -1,5 +1,6 @@
 import streamlit as st
 import cv2
+from pathlib import Path
 import numpy as np
 from PIL import Image
 import yaml
@@ -10,11 +11,19 @@ from src.app.predictor import predict_colonies
 
 @st.cache_resource
 def load_model_and_config():
-    config_path = "configs/inference/colony_counter_inference.yaml"
+    config_path = Path("assets/configs/inference/colony_counter_inference.yaml")
+
+    if not config_path.exists():
+        raise FileNotFoundError(f"Missing config file: {config_path}")
+
     with open(config_path, "r") as f:
         config = yaml.safe_load(f)
 
-    model = YOLO(config["model"])
+    model_path = Path(config["model"])
+    if not model_path.exists():
+        raise FileNotFoundError(f"Missing model file: {model_path}")
+
+    model = YOLO(str(model_path))
     return model, config
 
 
