@@ -1,0 +1,6 @@
+model: saved_models/yolo_baseline/best_1024_conf025_iou05.pt
+conf: 0.25
+iou: 0.5
+imgsz: 1024
+max_det: 1000
+tntc_threshold: 300

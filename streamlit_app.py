@@ -1,5 +1,5 @@
 import streamlit as st
-from pages_app import home, dilution_page, media_prep_page, cfu_page, timer_page
+from pages_app import home, colony_counter_page, dilution_page, media_prep_page, cfu_page, timer_page
 
 
 st.set_page_config(
@@ -12,8 +12,9 @@ page = st.sidebar.radio(
     "📍 Navigate",
     [
         "🧪 Home", 
-        "⚗️ Dilution calculator", 
-        "🧫 Media preparation", 
+        "🧫 Colony counter"
+        "💧 Dilution calculator", 
+        "⚗️ Media preparation", 
         "🦠 CFU estimator", 
         "⏰ Protocol timer"
     ]
@@ -21,9 +22,11 @@ page = st.sidebar.radio(
 
 if page == "🧪 Home":
     home.run()
-elif page == "⚗️ Dilution calculator":
+elif page == "🧫 Colony counter":
+    colony_counter_page.run()
+elif page == "💧 Dilution calculator":
     dilution_page.run()
-elif page == "🧫 Media preparation":
+elif page == "⚗️ Media preparation":
     media_prep_page.run()
 elif page == "🦠 CFU estimator":
     cfu_page.run()
